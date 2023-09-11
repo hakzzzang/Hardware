@@ -1,0 +1,19 @@
+const int LED = 13;
+
+void setup() {
+  pinMode(LED, OUTPUT);  // 13번 핀을 OUTPUT으로 설정함
+
+  digitalWrite(LED, HIGH);  // 13번 핀을 HIGH 상태로 변환, 핀에다가 5V (3.3V) 를 내보냄
+  digitalWrite(LED, LOW);   // 13번 핀을 LOW 상태로 변환, 핀에다가 0V 를 내보냄
+}
+
+void loop() {
+
+  for (int i = 0; i < 9; i++) {
+    digitalWrite(LED, HIGH);
+    delay(1+i);
+
+    digitalWrite(LED, LOW);
+    delay(9-i);
+  }
+}
