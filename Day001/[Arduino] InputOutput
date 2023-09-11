@@ -1,0 +1,20 @@
+
+void setup() {
+  int a = 10;
+  int b = 20;
+  int c = a+b;
+
+  Serial.begin(115200);
+  Serial.println("Hello PC, I'm an Arduino~");
+  Serial.println(78,HEX);
+  Serial.println(78,DEC);
+  Serial.println(78,BIN);
+  Serial.println(78,OCT);
+  Serial.println(1.23456,1);
+  Serial.println(1.23456,2);
+  Serial.println(1.23456,3);
+  Serial.println('N');
+}
+
+void loop() {
+}
