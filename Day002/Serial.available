@@ -1,0 +1,15 @@
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if(Serial.available())
+  {
+    char userInput = Serial.read();
+    Serial.print(userInput);
+    Serial.print("\n");                    // /n은 그 자리에서 바로 밑으로 내려감 /r까지 써줘야 줄바꿈
+  }
+}
