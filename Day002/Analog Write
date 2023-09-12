@@ -1,0 +1,23 @@
+//Analog 0 ~ 255
+
+const unsigned int LED[4] = {3,5,6,9};
+
+void setup()
+{
+
+}
+
+void loop()
+{
+  /*for(int i = 0; i < 4; i ++)
+  {
+    for(int j = 0; j <= 255; j++)
+    {
+      analogWrite(LED[i], j);
+      delay(2);
+    }
+    analogWrite(LED[i],0);
+  }*/
+
+
+}
