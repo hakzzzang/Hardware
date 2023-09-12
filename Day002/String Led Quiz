@@ -1,0 +1,27 @@
+// C언어에는 String이 없기때문에 buffer 이용해서 하는것도 해보기
+
+
+const int LED = 13;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if(Serial.available())
+  {
+    String stringData = Serial.readString();
+
+    if(stringData=="LED_ON\n")        // 시리얼 모니터에서 새 줄로 입력하기때문에 \n 입력 필수!
+    {
+      digitalWrite(LED, HIGH);
+    }
+    if(stringData=="LED_OFF\n")
+    {
+      digitalWrite(LED, LOW);
+    }
+  }
+}
