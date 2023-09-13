@@ -1,0 +1,57 @@
+// led를 두개 켰을 때, 정상적으로 작동하지 않는 문제점이 보인다.
+
+#include <PinChangeInterrupt.h>
+#include <PinChangeInterruptBoards.h>
+#include <PinChangeInterruptPins.h>
+#include <PinChangeInterruptSettings.h>
+
+const int SW_0 = 4, SW_1 = 5;
+const int LED_0 = 10, LED_1 = 11;
+int flag_0 = 0, flag_1 = 0;   // 0:OFF, 1:Toggle
+
+void SW0_Pressed(){ // ISR
+  // SW_0에 값에 따른 상태값(flag_0) 변경
+  flag_0 = (flag_0 == 0)? 1:0;
+}
+
+void SW1_Pressed(){
+  // SW_1에 값에 따른 상태값(flag_1) 변경
+  flag_1 = (flag_1 == 0)? 1:0;
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  pinMode(SW_0, INPUT);
+  pinMode(SW_1, INPUT);
+  pinMode(LED_0, OUTPUT);
+  pinMode(LED_1, OUTPUT);
+  digitalWrite(LED_0, LOW);
+  digitalWrite(LED_1, LOW);
+
+  // attachInterrupt(digitalPinToInterrupt(SW_0), SW0_Pressed, RISING);
+  // attachInterrupt(digitalPinToInterrupt(SW_1), SW1_Pressed, RISING);
+  attachPCINT(digitalPinToPCINT(SW_0), SW0_Pressed, RISING);
+  attachPCINT(digitalPinToPCINT(SW_1), SW1_Pressed, RISING);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  // flag_0 값에 따른 동작 구현
+  if(flag_0 == 0)  {
+    digitalWrite(LED_0, LOW);
+  }
+  else{
+    digitalWrite(LED_0, !digitalRead(LED_0)); // Toggle
+    delay(300);      
+  }
+
+  // flag_1 값에 따른 동작 구현
+  if(flag_1 == 0)  {
+    digitalWrite(LED_1, LOW);
+  }
+  else{
+    digitalWrite(LED_1, !digitalRead(LED_1));
+    delay(500);      
+  }
+}
