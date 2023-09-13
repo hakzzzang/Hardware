@@ -1,0 +1,26 @@
+const int analogPin = A0;
+const int led[4] = {3, 5, 6, 9};
+
+void setup() {
+  Serial.begin(115200);
+
+  for(int i = 0; i < 4; i++)
+  {
+    pinMode(led[i], OUTPUT);
+  }
+
+}
+
+void loop() {
+  int sensorInput = analogRead(analogPin);
+  Serial.print("AnalogValue : ");
+  Serial.print(sensorInput);
+  Serial.print("     Volt : ");
+  Serial.print((sensorInput/1023.0)*5.0,2);
+
+  unsigned long val = map(sensorInput, 200, 1000, 0, 255);
+  Serial.print("     DigitalValue : ");
+  Serial.println(val);
+  delay(1000);
+
+}
