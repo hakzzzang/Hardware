@@ -1,0 +1,35 @@
+// 송신측
+
+void setup() {
+  Serial.begin(115200);  // 통신 속도를 115200 bps로 설정
+}
+
+void loop() {
+  // 센서 값을 읽거나 다른 데이터를 얻어옴
+  int sensorValue = analogRead(A0);
+
+  // 센서 값을 다른 Arduino로 보냄
+  Serial.println(sensorValue);
+
+}
+
+
+
+// 수신측
+int receivedValue;
+
+void setup() {
+  Serial.begin(115200);  // 시리얼 통신 초기화
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    receivedValue = Serial.parseInt();
+    Serial.println(receivedValue);  // 시리얼에서 수신한 값을 읽음
+    // 수신한 값을 기준으로 LED를 제어
+  }
+}
+
+
+// ParseInt는 정수값에서 다른 문자형이 나올때까지 읽어줌.
+// ParseInt 사용하지않으면, Char형의 배열로 값을 받아 \n이 나올때까지 읽고 출력하는 형태로 작성해야함
