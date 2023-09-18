@@ -1,0 +1,24 @@
+#include <Servo.h>
+
+const int analogPin = A0;
+const int servoPin = 10;
+Servo servo;
+
+void setup() {
+  Serial.begin(115200);
+  servo.attach(servoPin);
+  servo.write(0); 
+  delay(1000);
+}
+
+void loop() {
+  int analogValue = analogRead(analogPin); // 가변 저항의 값을 읽음
+  int servoAngle = map(analogValue, 0, 1023, 0, 180); 
+
+  Serial.println(analogValue);
+  Serial.print("Servo Angle: ");
+  Serial.println(servoAngle);
+
+  servo.write(servoAngle);
+  delay(15);
+}
