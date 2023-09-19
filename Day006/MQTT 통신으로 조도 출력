@@ -1,4 +1,6 @@
-Windows 10 Arduino 에서 구동
+Windows 10 ArduinoIDE  Phi board 를 연결하여 구동
+
+BH1750으로부터 얻은 조도값 Phi 보드가 Publishing
 
 라즈베리파이 터미널
 mosquitto_sub -t Sensors/MyOffice/Indoor/Lux -u mqtt_ship -P 1234 명령어를 통해 값을 전달받을 수 있음
